@@ -12,7 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,13 +25,13 @@ public class GoodWord {
     private String content;
     @CreatedDate
     @Column(name = "create_at", insertable = false, updatable = false, nullable = false)
-    private Date createAt;
+    private LocalDateTime createAt;
     @LastModifiedDate
     @Column(name = "update_at")
-    private Date updateAt;
+    private LocalDateTime updateAt;
 
     @Builder
-    public GoodWord(UUID id, String content, Date createAt, Date updateAt) {
+    public GoodWord(UUID id, String content, LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
         this.content = content;
         this.createAt = createAt;

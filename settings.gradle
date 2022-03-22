@@ -1,3 +1,4 @@
 rootProject.name = 'webapp-ohlot'
 
-include ':components:module-ohlot'
+include ':components:module-foo'
+include ':components:module-bar'

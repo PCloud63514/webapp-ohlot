@@ -3,32 +3,32 @@ package com.example.ohlot.api;
 import com.example.ohlot.service.GoodWordAddRequest;
 import com.example.ohlot.service.GoodWordAddResponse;
 import com.example.ohlot.service.GoodWordGetResponse;
+import com.example.ohlot.service.GoodWordService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+@RequiredArgsConstructor
 @RequestMapping("good-words")
 @RestController
 public class GoodWordApi {
-    // 동기화를 위해 시간 반환하기
+    private final GoodWordService goodWordService;
+
     @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping
     public GoodWordAddResponse addGoodWord(@RequestBody GoodWordAddRequest request) {
-        return new GoodWordAddResponse("id", request.getContent());
+        return goodWordService.addGoodWord(request);
     }
 
     @GetMapping
@@ -43,7 +43,7 @@ public class GoodWordApi {
     }
 
     @PatchMapping
-    public void updateGoodWord() {
+    public void updateGoodWord(@RequestParam(name = "id") String id, @RequestParam(name = "content") String content) {
 
     }
 }

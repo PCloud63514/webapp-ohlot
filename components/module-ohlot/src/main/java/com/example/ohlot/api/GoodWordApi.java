@@ -33,13 +33,7 @@ public class GoodWordApi {
 
     @GetMapping
     public List<GoodWordGetResponse> getGoodWords() {
-        ArrayList<GoodWordGetResponse> response = new ArrayList<>();
-
-        response.add(new GoodWordGetResponse("id", "content",
-                LocalDateTime.of(2022, 2, 2, 22, 22, 22),
-                LocalDateTime.of(2022, 2, 2, 22, 22, 22)));
-
-        return response;
+        return goodWordService.getGoodWords();
     }
 
     @PatchMapping

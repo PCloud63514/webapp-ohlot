@@ -73,6 +73,14 @@ class GoodWordApiTest {
     }
 
     @Test
+    void getGoodWords_callGoodWordService() throws Exception {
+        mockMvc.perform(get("/good-words"))
+                .andExpect(status().isOk());
+
+        assertThat(spyGoodWordService.getGoodWords_wasGetGoodWords).isTrue();
+    }
+
+    @Test
     void updateGoodWord_okHttpStatus() throws Exception {
         mockMvc.perform(patch("/good-words")
                         .param("id", "id")

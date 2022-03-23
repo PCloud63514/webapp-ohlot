@@ -82,8 +82,7 @@ class GoodWordApiTest {
 
     @Test
     void updateGoodWord_okHttpStatus() throws Exception {
-        mockMvc.perform(patch("/good-words")
-                        .param("id", "id")
+        mockMvc.perform(patch("/good-words/{id}", "id")
                         .param("content", "updateContent"))
                 .andExpect(status().isOk());
     }

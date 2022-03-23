@@ -37,5 +37,12 @@ public class GoodWord {
         this.createAt = createAt;
         this.updateAt = updateAt;
     }
+
+    public static GoodWord create(UUID id, String content) {
+        return GoodWord.builder()
+                .id(id)
+                .content(content)
+                .build();
+    }
 }
 

@@ -2,7 +2,7 @@
 
 ### webapp-ohlot clone repository
 ```shell
-$ git clone git@github.com:zkdlu/application-continuum-boilerplate.git {project-path}
+$ git clone https://github.com/PCloud63514/webapp-ohlot.git {project-path}
 $ cd project-path
 $ git remote remove origin
 ```

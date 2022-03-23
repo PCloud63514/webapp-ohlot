@@ -64,17 +64,17 @@ class GoodWordApiTest {
     @Test
     void getGoodWord_okHttpStatus() throws Exception {
         mockMvc.perform(get("/good-words"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getGoodWord_returnValue() throws Exception {
+        mockMvc.perform(get("/good-words"))
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$[0].id", equalTo("id")))
                 .andExpect(jsonPath("$[0].content", equalTo("content")))
                 .andExpect(jsonPath("$[0].createAt", equalTo("2022-02-02 22:22:22")))
                 .andExpect(jsonPath("$[0].updateAt", equalTo("2022-02-02 22:22:22")))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void getGoodWords_callGoodWordService() throws Exception {
-        mockMvc.perform(get("/good-words"))
                 .andExpect(status().isOk());
 
         assertThat(spyGoodWordService.getGoodWords_wasGetGoodWords).isTrue();
@@ -85,5 +85,18 @@ class GoodWordApiTest {
         mockMvc.perform(patch("/good-words/{id}", "id")
                         .param("content", "updateContent"))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    void updateGoodWord_passesRequestByUpdateGoodWordOfService() throws Exception {
+        String givenId = "id";
+        String givenUpdateContent = "updateContent";
+
+        mockMvc.perform(patch("/good-words/{id}", givenId)
+                        .param("content", givenUpdateContent))
+                .andExpect(status().isOk());
+
+        assertThat(spyGoodWordService.updateGoodWord_argument.getId()).isEqualTo(givenId);
+        assertThat(spyGoodWordService.updateGoodWord_argument.getContent()).isEqualTo(givenUpdateContent);
     }
 }

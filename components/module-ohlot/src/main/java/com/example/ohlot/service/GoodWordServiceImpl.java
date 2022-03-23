@@ -43,4 +43,9 @@ public class GoodWordServiceImpl implements GoodWordService {
 
         return responses;
     }
+
+    @Override
+    public void updateGoodWord(GoodWordUpdateRequest request) {
+
+    }
 }

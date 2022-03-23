@@ -4,11 +4,9 @@ import com.example.ohlot.domain.GoodWord;
 import com.example.ohlot.domain.GoodWordFixtures;
 import com.example.ohlot.domain.SpyGoodWordRepository;
 import com.example.ohlot.provider.StubUUIDProvider;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

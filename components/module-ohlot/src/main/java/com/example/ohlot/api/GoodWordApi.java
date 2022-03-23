@@ -4,6 +4,7 @@ import com.example.ohlot.service.GoodWordAddRequest;
 import com.example.ohlot.service.GoodWordAddResponse;
 import com.example.ohlot.service.GoodWordGetResponse;
 import com.example.ohlot.service.GoodWordService;
+import com.example.ohlot.service.GoodWordUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,6 @@ public class GoodWordApi {
 
     @PatchMapping("{id}")
     public void updateGoodWord(@PathVariable String id, @RequestParam(name = "content") String content) {
-
+        goodWordService.updateGoodWord(new GoodWordUpdateRequest(id, content));
     }
 }

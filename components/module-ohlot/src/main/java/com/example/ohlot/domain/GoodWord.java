@@ -44,5 +44,9 @@ public class GoodWord {
                 .content(content)
                 .build();
     }
+
+    public void update(String content) {
+        this.content = content;
+    }
 }
 

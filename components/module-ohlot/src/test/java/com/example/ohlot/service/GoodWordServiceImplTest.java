@@ -4,6 +4,7 @@ import com.example.ohlot.domain.GoodWord;
 import com.example.ohlot.domain.GoodWordFixtures;
 import com.example.ohlot.domain.SpyGoodWordRepository;
 import com.example.ohlot.provider.StubUUIDProvider;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -70,6 +71,32 @@ class GoodWordServiceImplTest {
         assertThat(givenResponse.get(0).getContent()).isEqualTo(goodWords.get(0).getContent());
         assertThat(givenResponse.get(0).getCreateAt()).isEqualTo(goodWords.get(0).getCreateAt());
         assertThat(givenResponse.get(0).getUpdateAt()).isEqualTo(goodWords.get(0).getUpdateAt());
+    }
 
+    @Test
+    void updateGoodWord_wasMethodToRepository() {
+        UUID givenUUID = UUID.randomUUID();
+        String givenBeforeContent = "beforeContent";
+        String givenAfterContent = "afterContent";
+        GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest(givenUUID.toString(), givenAfterContent);
+        spyGoodWordRepository.findById_returnValue = GoodWord.create(givenUUID, givenBeforeContent);
+
+        goodWordService.updateGoodWord(givenRequest);
+
+        assertThat(spyGoodWordRepository.was_findById).isTrue();
+        assertThat(spyGoodWordRepository.was_save).isTrue();
+        assertThat(spyGoodWordRepository.save_argument.getContent()).isEqualTo(givenAfterContent);
+    }
+
+    @Test
+    void updateGoodWord_throwExceptionByFromStringOfUUID() {
+        GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest("id", "content");
+        Assertions.assertThrows(RuntimeException.class, ()->goodWordService.updateGoodWord(givenRequest));
+    }
+
+    @Test
+    void updateGoodWord_throwException_By_FindById_Of_Repository() {
+        GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest(UUID.randomUUID().toString(), "content");
+        Assertions.assertThrows(RuntimeException.class, ()->goodWordService.updateGoodWord(givenRequest));
     }
 }

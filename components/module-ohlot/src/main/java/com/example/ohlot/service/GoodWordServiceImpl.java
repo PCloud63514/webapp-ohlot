@@ -46,6 +46,10 @@ public class GoodWordServiceImpl implements GoodWordService {
 
     @Override
     public void updateGoodWord(GoodWordUpdateRequest request) {
+        UUID uuid = UUID.fromString(request.getId());
 
+        GoodWord goodWord = goodWordRepository.findById(uuid).orElseThrow(RuntimeException::new);
+        goodWord.update(request.getContent());
+        goodWordRepository.save(goodWord);
     }
 }

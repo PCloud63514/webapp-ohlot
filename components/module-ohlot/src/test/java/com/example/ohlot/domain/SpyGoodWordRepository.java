@@ -16,6 +16,9 @@ public class SpyGoodWordRepository implements GoodWordRepository {
     public GoodWord save_argument;
     public boolean existsById_returnValue = false;
     public List<GoodWord> findAll_returnValue;
+    public boolean was_findById;
+    public boolean was_save;
+    public GoodWord findById_returnValue;
 
     @Override
     public List<GoodWord> findAll() {
@@ -72,6 +75,7 @@ public class SpyGoodWordRepository implements GoodWordRepository {
     @Override
     public <S extends GoodWord> S save(S entity) {
         save_argument = entity;
+        was_save = true;
         return null;
     }
 
@@ -82,7 +86,8 @@ public class SpyGoodWordRepository implements GoodWordRepository {
 
     @Override
     public Optional<GoodWord> findById(UUID uuid) {
-        return Optional.empty();
+        was_findById = true;
+        return Optional.ofNullable(findById_returnValue);
     }
 
     @Override

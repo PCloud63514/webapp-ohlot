@@ -24,7 +24,7 @@ public class GoodWord {
     private UUID id;
     private String content;
     @CreatedDate
-    @Column(name = "create_at", insertable = false, updatable = false, nullable = false)
+    @Column(name = "create_at", updatable = false, nullable = false)
     private LocalDateTime createAt;
     @LastModifiedDate
     @Column(name = "update_at")

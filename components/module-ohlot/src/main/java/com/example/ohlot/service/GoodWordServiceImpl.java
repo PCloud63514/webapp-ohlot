@@ -33,6 +33,7 @@ public class GoodWordServiceImpl implements GoodWordService {
     @Override
     public List<GoodWordGetResponse> getGoodWords() {
         List<GoodWordGetResponse> responses = new ArrayList<>();
+
         return goodWordRepository.findAll()
                 .stream()
                 .map(goodWord ->

@@ -36,7 +36,8 @@ public class GoodWordServiceImpl implements GoodWordService {
 
         return goodWordRepository.findAll()
                 .stream()
-                .map(GoodWordGetResponse::new).collect(Collectors.toList());
+                .map(GoodWordGetResponse::new)
+                .collect(Collectors.toList());
     }
 
     @Override

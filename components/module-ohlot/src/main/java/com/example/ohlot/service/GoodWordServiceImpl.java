@@ -33,7 +33,8 @@ public class GoodWordServiceImpl implements GoodWordService {
     @Override
     public List<GoodWordGetResponse> getGoodWords() {
         List<GoodWordGetResponse> responses = new ArrayList<>();
-        return goodWordRepository.findAll().stream()
+        return goodWordRepository.findAll()
+                .stream()
                 .map(goodWord ->
                         new GoodWordGetResponse(goodWord.getId().toString(), goodWord.getContent(), goodWord.getCreateAt(), goodWord.getUpdateAt()))
                 .collect(Collectors.toList());

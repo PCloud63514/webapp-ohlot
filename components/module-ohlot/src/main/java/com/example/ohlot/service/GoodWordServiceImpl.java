@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -32,16 +33,10 @@ public class GoodWordServiceImpl implements GoodWordService {
     @Override
     public List<GoodWordGetResponse> getGoodWords() {
         List<GoodWordGetResponse> responses = new ArrayList<>();
-        List<GoodWord> goodWords = goodWordRepository.findAll();
-
-        for (GoodWord goodWord : goodWords) {
-            responses.add(new GoodWordGetResponse(goodWord.getId().toString(),
-                    goodWord.getContent(),
-                    goodWord.getCreateAt(),
-                    goodWord.getUpdateAt()));
-        }
-
-        return responses;
+        return goodWordRepository.findAll().stream()
+                .map(goodWord ->
+                        new GoodWordGetResponse(goodWord.getId().toString(), goodWord.getContent(), goodWord.getCreateAt(), goodWord.getUpdateAt()))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import axios, {AxiosResponse} from 'axios';
 
+type IGetGoodWordFunction = () => Promise<IGoodWord[]>
+
+
+
 interface IGoodWord {
     id: string,
     content: string,
@@ -8,32 +12,28 @@ interface IGoodWord {
     updateAt: string | Date
 }
 
-interface GetGoodWords {
-    () : IGoodWord[] | undefined
+interface GoodWordPageProps {
+    getGoodWordFunction?: IGetGoodWordFunction
 }
 
-function getGoodWords() : IGoodWord[] | undefined {
-    return undefined;
+async function GetGoodWordFunction():Promise<IGoodWord[]> {
+    const response = await axios.get<IGoodWord[]>("http://localhost:8080/good-words")
+    return response.data
 }
 
-/**
- *
- * GET good-words 요청으로 목록을 가져와서
- * 박스에 내용을 담아서 화면에 보여줄 것.
- * 그렇다면 테스트의 범위는?
- *
- * 로딩 화면 정상작동 여부
- * rest api 호출 여부
- * 가져온 모든 내용을 변조 없이 박스에 담았는지 여부
- * 박스를 화면에 그려냈는지 여부
- *
- */
-const GoodWordPage = ({val:GetGoodWords}: any) => {
+const GoodWordPage = ({getGoodWordFunction=GetGoodWordFunction}:GoodWordPageProps) => {
+    const [content, setContent] = useState<IGoodWord[]>([])
+
+    useEffect(()=> {
+        getGoodWordFunction().then(value => {
+            setContent(value)
+        })
+    })
+
     return (
-        <div>
-            loading...
-        </div>
-    )
+            <div>
+                {content.map(value => <div key={value.id}>{value.content}</div>)}
+            </div>
+        )
 }
-
 export default GoodWordPage

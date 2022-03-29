@@ -1,37 +1,23 @@
-import {fireEvent, render, screen} from '@testing-library/react'
-// import {renderHook} from '@testing-library/react-hooks'
-import userEvent from "@testing-library/user-event";
+import {render, screen, waitFor} from '@testing-library/react'
+import {IGoodWord} from "../../api/good-words";
 import GoodWordPage from "./GoodWordPage";
-import axios from "axios";
 
 /**
  * 공식 사이트 https://testing-library.com/docs/react-testing-library/intro/
  */
 
-async function GetGoodWordFunction():Promise<IGoodWord[]> {
-    
-    return response.data
+async function SpyGetGoodWordFunction(): Promise<IGoodWord[]> {
+    return [{
+        id: "id",
+        content: "content",
+        createAt: "2022-02-02 22:22:22",
+        updateAt: "2022-02-02 22:22:22"
+    }];
 }
 
-describe('GoodWordPage Loading Test', () => {
-    test('show loading Message(testing-library & jest)', () => {
-        render(<GoodWordPage />)
-
-        const target = screen.getByText('SpyGetGoodWordFunction')
-
-        expect(target).toBeInTheDocument() // jest의 기능을 함께 사용할 수 있다.
+describe('GoodWordPage Test', () => {
+    it('Call GetGoodWordFunction',   async () => {
+        render(<GoodWordPage getGoodWordsFunction={SpyGetGoodWordFunction}/>)
+        await waitFor(() => screen.getByText('content'))
     })
-
-    // it('', () => {
-    //
-    // })
-    //
-    // it('show loading(testing-library)', () => {
-    //     const {getByText} = render(<GoodWordPage/>)
-    //     getByText('loading...')
-    // })
-    //
-    // it('not visible loading text', () => {
-    //    render(<GoodWordPage/>)
-    // })
 })

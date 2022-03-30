@@ -107,4 +107,13 @@ class GoodWordApiTest {
         mockMvc.perform(delete("/good-words/{id}", givenId))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void deleteGoodWord_passesIdToGoodWordService() throws Exception {
+        String givenId = "id";
+        mockMvc.perform(delete("/good-words/{id}", givenId))
+                .andExpect(status().isOk());
+
+        assertThat(spyGoodWordService.deleteGoodWord_argument).isEqualTo(givenId);
+    }
 }

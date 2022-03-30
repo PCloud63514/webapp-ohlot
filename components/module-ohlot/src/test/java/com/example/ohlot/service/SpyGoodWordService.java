@@ -8,6 +8,7 @@ public class SpyGoodWordService implements GoodWordService {
     public GoodWordAddRequest addGoodWord_argument;
     public boolean getGoodWords_wasGetGoodWords = false;
     public GoodWordUpdateRequest updateGoodWord_argument;
+    public String deleteGoodWord_argument;
 
     @Override
     public GoodWordAddResponse addGoodWord(GoodWordAddRequest request) {
@@ -30,5 +31,10 @@ public class SpyGoodWordService implements GoodWordService {
     @Override
     public void updateGoodWord(GoodWordUpdateRequest request) {
         this.updateGoodWord_argument = request;
+    }
+
+    @Override
+    public void deleteGoodWord(String id) {
+        deleteGoodWord_argument = id;
     }
 }

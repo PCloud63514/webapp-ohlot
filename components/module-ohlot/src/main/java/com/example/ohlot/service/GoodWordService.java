@@ -6,4 +6,5 @@ public interface GoodWordService {
     GoodWordAddResponse addGoodWord(GoodWordAddRequest request);
     List<GoodWordGetResponse> getGoodWords();
     void updateGoodWord(GoodWordUpdateRequest request);
+    void deleteGoodWord(String id);
 }

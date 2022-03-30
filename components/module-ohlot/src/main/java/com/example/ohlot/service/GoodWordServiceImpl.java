@@ -50,4 +50,9 @@ public class GoodWordServiceImpl implements GoodWordService {
         goodWord.update(request.getContent());
         goodWordRepository.save(goodWord);
     }
+
+    @Override
+    public void deleteGoodWord(String id) {
+
+    }
 }

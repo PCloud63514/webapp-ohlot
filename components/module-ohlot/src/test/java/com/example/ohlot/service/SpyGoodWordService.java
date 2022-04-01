@@ -3,12 +3,13 @@ package com.example.ohlot.service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SpyGoodWordService implements GoodWordService {
     public GoodWordAddRequest addGoodWord_argument;
     public boolean getGoodWords_wasGetGoodWords = false;
     public GoodWordUpdateRequest updateGoodWord_argument;
-    public String deleteGoodWord_argument;
+    public UUID deleteGoodWord_argument;
 
     @Override
     public GoodWordAddResponse addGoodWord(GoodWordAddRequest request) {
@@ -34,7 +35,7 @@ public class SpyGoodWordService implements GoodWordService {
     }
 
     @Override
-    public void deleteGoodWord(String id) {
+    public void deleteGoodWord(UUID id) {
         deleteGoodWord_argument = id;
     }
 }

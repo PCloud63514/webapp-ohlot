@@ -50,7 +50,7 @@ public class GoodWordServiceImpl implements GoodWordService {
     }
 
     @Override
-    public void deleteGoodWord(String id) {
-        goodWordRepository.deleteById(UUID.fromString(id));
+    public void deleteGoodWord(UUID id) {
+        goodWordRepository.deleteById(id);
     }
 }

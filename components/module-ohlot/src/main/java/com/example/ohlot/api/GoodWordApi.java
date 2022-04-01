@@ -44,7 +44,7 @@ public class GoodWordApi {
     }
 
     @DeleteMapping("{id}")
-    public void deleteGoodWord(@PathVariable(name = "id") String id) {
+    public void deleteGoodWord(@PathVariable(name = "id") UUID id) {
         goodWordService.deleteGoodWord(id);
     }
 }

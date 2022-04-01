@@ -103,7 +103,7 @@ class GoodWordServiceImplTest {
     @Test
     void deleteGoodWord_passesIdToRepository() {
         UUID givenUUID = UUID.randomUUID();
-        goodWordService.deleteGoodWord(givenUUID.toString());
+        goodWordService.deleteGoodWord(givenUUID);
 
         assertThat(spyGoodWordRepository.deleteById_argument).isEqualTo(givenUUID);
     }

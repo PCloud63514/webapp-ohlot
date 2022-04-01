@@ -105,14 +105,13 @@ class GoodWordApiTest {
 
     @Test
     void deleteGoodWord_okHttpStatus() throws Exception {
-        String givenId = "id";
-        mockMvc.perform(delete("/good-words/{id}", givenId))
+        mockMvc.perform(delete("/good-words/{id}", UUID.randomUUID()))
                 .andExpect(status().isOk());
     }
 
     @Test
     void deleteGoodWord_passesIdToGoodWordService() throws Exception {
-        String givenId = "id";
+        UUID givenId = UUID.randomUUID();
         mockMvc.perform(delete("/good-words/{id}", givenId))
                 .andExpect(status().isOk());
 

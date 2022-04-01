@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.UUID;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -83,14 +85,14 @@ class GoodWordApiTest {
 
     @Test
     void updateGoodWord_okHttpStatus() throws Exception {
-        mockMvc.perform(patch("/good-words/{id}", "id")
+        mockMvc.perform(patch("/good-words/{id}", UUID.randomUUID())
                         .param("content", "updateContent"))
                 .andExpect(status().isOk());
     }
 
     @Test
     void updateGoodWord_passesRequestByUpdateGoodWordOfService() throws Exception {
-        String givenId = "id";
+        UUID givenId = UUID.randomUUID();
         String givenUpdateContent = "updateContent";
 
         mockMvc.perform(patch("/good-words/{id}", givenId)

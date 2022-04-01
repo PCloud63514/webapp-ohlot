@@ -78,7 +78,7 @@ class GoodWordServiceImplTest {
         UUID givenUUID = UUID.randomUUID();
         String givenBeforeContent = "beforeContent";
         String givenAfterContent = "afterContent";
-        GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest(givenUUID.toString(), givenAfterContent);
+        GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest(givenUUID, givenAfterContent);
         spyGoodWordRepository.findById_returnValue = GoodWord.create(givenUUID, givenBeforeContent);
 
         goodWordService.updateGoodWord(givenRequest);
@@ -90,13 +90,13 @@ class GoodWordServiceImplTest {
 
     @Test
     void updateGoodWord_throwExceptionByFromStringOfUUID() {
-        GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest("id", "content");
+        GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest(UUID.randomUUID(), "content");
         Assertions.assertThrows(RuntimeException.class, ()->goodWordService.updateGoodWord(givenRequest));
     }
 
     @Test
     void updateGoodWord_throwException_By_FindById_Of_Repository() {
-        GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest(UUID.randomUUID().toString(), "content");
+        GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest(UUID.randomUUID(), "content");
         Assertions.assertThrows(RuntimeException.class, ()->goodWordService.updateGoodWord(givenRequest));
     }
 

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RequestMapping("good-words")
@@ -38,7 +39,7 @@ public class GoodWordApi {
     }
 
     @PatchMapping("{id}")
-    public void updateGoodWord(@PathVariable String id, @RequestParam(name = "content") String content) {
+    public void updateGoodWord(@PathVariable UUID id, @RequestParam(name = "content") String content) {
         goodWordService.updateGoodWord(new GoodWordUpdateRequest(id, content));
     }
 

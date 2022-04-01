@@ -19,6 +19,7 @@ public class SpyGoodWordRepository implements GoodWordRepository {
     public boolean was_findById;
     public boolean was_save;
     public GoodWord findById_returnValue;
+    public UUID deleteById_argument;
 
     @Override
     public List<GoodWord> findAll() {
@@ -47,7 +48,7 @@ public class SpyGoodWordRepository implements GoodWordRepository {
 
     @Override
     public void deleteById(UUID uuid) {
-
+        this.deleteById_argument = uuid;
     }
 
 

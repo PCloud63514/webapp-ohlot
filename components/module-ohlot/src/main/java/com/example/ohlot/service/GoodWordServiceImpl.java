@@ -53,6 +53,6 @@ public class GoodWordServiceImpl implements GoodWordService {
 
     @Override
     public void deleteGoodWord(String id) {
-
+        goodWordRepository.deleteById(UUID.fromString(id));
     }
 }

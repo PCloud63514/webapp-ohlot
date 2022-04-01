@@ -99,4 +99,12 @@ class GoodWordServiceImplTest {
         GoodWordUpdateRequest givenRequest = new GoodWordUpdateRequest(UUID.randomUUID().toString(), "content");
         Assertions.assertThrows(RuntimeException.class, ()->goodWordService.updateGoodWord(givenRequest));
     }
+
+    @Test
+    void deleteGoodWord_passesIdToRepository() {
+        UUID givenUUID = UUID.randomUUID();
+        goodWordService.deleteGoodWord(givenUUID.toString());
+
+        assertThat(spyGoodWordRepository.deleteById_argument).isEqualTo(givenUUID);
+    }
 }

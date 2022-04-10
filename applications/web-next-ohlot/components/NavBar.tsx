@@ -6,15 +6,15 @@ import styles from './NavBar.module.css'
 export default function NavBar() {
     const router = useRouter()
     return (
-        <nav className={styles.nav}>
+        <nav>
             <Link href={"/"}>
-                <a style={{color: router.pathname === "/" ? "red" : ""}} className={"Home"}>Home</a>
+                <a className={`${styles.link} ${router.pathname === "/" ? styles.active : ""}`}>Home</a>
             </Link>
             <Link href={"/about"}>
                 About
             </Link>
             <Link href={"/counter"}>
-                <a style={{color: router.pathname === "/counter" ? "red" : ""}}>Counter</a>
+                <a className={`${styles.link} ${router.pathname === "/counter" ? styles.active : ""}`}>Counter</a>
             </Link>
         </nav>
     )

@@ -52,10 +52,21 @@ function build_applications() {
   read_applications
 
   for service in ${READ_SERVICES[@]}; do
-    if [ ${service} == 'app-*' ]; then
-      echo ${service}
+    if [[ ${service} =~ app- ]]; then
+      echo "${service} build"
+      bash ./gradlew applications:${service}:clean
+      bash ./gradlew applications:${service}:bootJar
+    elif [[ ${service} =~ web- ]]; then
+      echo  "${service} npm build"
+      cd applications/${service}
+      echo `pwd`
+      npm install
+      npm run build
+      cd ../..
     fi
   done
+  echo "[${MSG_4} 완료]"
+
 }
 
 function docker_image_deployment() {

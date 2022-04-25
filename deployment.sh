@@ -65,7 +65,7 @@ function build_applications() {
       cd ../..
     fi
   done
-  echo "[${MSG_4} 완료]"
+  echo "[${MSG_4} 완료.]"
 
 }
 
@@ -105,3 +105,5 @@ case ${CHOICE} in
   echo "Error"
   ;;
 esac
+
+echo "스크립트 종료."

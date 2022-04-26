@@ -6,7 +6,11 @@ $ git clone https://github.com/PCloud63514/webapp-ohlot.git {project-path}
 $ cd project-path
 $ git remote remove origin
 ```
-
+### application deployment script
+> It's incomplete. Please clone it for the first time and run event number 4.
+```shell
+$ /bin/bash deployment.sh
+```
 ### application run
 > Java 11 must be installed.
 ```shell
